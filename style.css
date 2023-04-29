@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid grey;
+    height: 8rem;
+}
+
+.logo {
+    margin: 0;
+    margin-left: 2rem;
+}
+
+.nav-meny {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    margin-right: 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: inherit;
+}
