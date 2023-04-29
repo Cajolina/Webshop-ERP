@@ -2,7 +2,7 @@ const main = document.querySelector("main");
 
 const postData = async () => {
   const response = await fetch(
-    "http://localhost/webshop_grupp1/wp-json/wp/v2/posts",
+    "http://localhost/webshop_grupp1/wp-json/wp/v2/posts?per_page=2",
     {
       method: "GET",
 
