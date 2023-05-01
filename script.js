@@ -19,9 +19,6 @@ const postData = async () => {
 postData();
 
 function renderPosts(data) {
-  //   const ul = document.createElement("ul");
-  //   main.appendChild(ul);
-
   const posts = data;
 
   for (const post of posts) {
@@ -46,15 +43,9 @@ function renderPosts(data) {
     );
     console.log(post._links);
 
-    // console.log(post.title.toString());
-
     div.appendChild(h2);
     div.appendChild(img);
     div.appendChild(paragraph);
     main.appendChild(div);
-    // console.log(post);
-    // const li = document.createElement("li");
-    // li.innerText = post.date;
-    // ul.appendChild(li);
   }
 }
