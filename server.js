@@ -1,4 +1,68 @@
 const express = require("express");
 const app = express();
+const WooCommerceAPI = require("woocommerce-api");
+require("dotenv").config();
+const CONSUMER_KEY = process.env.CONSUMER_KEY;
+const CONSUMER_SECRET = process.env.CONSUMER_SECRET;
+
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
 
 app.listen(3000, () => console.log("Server up and running"));
+
+const WooCommerce = new WooCommerceAPI({
+  url: "http://localhost/webshop_grupp1/",
+  consumerKey: CONSUMER_KEY,
+  consumerSecret: CONSUMER_SECRET,
+  wpAPI: true,
+  version: "wc/v1",
+});
+
+// WooCommerce.getAsync("products/categories").then(function (result) {
+//   return JSON.parse(result.toJSON().body);
+// });
+
+// WooCommerce.getAsync("orders").then(function (result) {
+//   return JSON.parse(result.toJSON().body);
+// });
+
+// WooCommerce.getAsync("posts").then(function (result) {
+//   console.log(JSON.parse(result.toJSON().body));
+// });
+
+app.get("/products", async (req, res) => {
+  try {
+    const result = await WooCommerce.getAsync("products");
+    const products = JSON.parse(result.toJSON().body);
+    res.json(products);
+    // console.log(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
+
+// app.get("/orders", async (req, res) => {
+//     try {
+//       const result = await WooCommerce.getAsync("orders");
+//       const orders = JSON.parse(result.toJSON().body);
+//       res.json(orders);
+//       console.log(orders);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).send("Internal server error");
+//     }
+//   });
+
+// app.get("/posts", async (req, res) => {
+//     try {
+//       const result = await WooCommerce.getAsync("posts");
+//       const posts = JSON.parse(result.toJSON().body);
+//       res.json(posts);
+//       console.log(posts);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).send("Internal server error");
+//     }
+//   });

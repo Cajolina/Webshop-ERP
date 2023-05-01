@@ -1,0 +1,5 @@
+GET http://localhost/webshop_grupp1/wp-json/wc/v3/products
+
+###
+
+GET http://localhost:3000/products
