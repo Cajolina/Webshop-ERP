@@ -33,7 +33,8 @@ const WooCommerce = new WooCommerceAPI({
 
 app.get("/products", async (req, res) => {
   try {
-    const result = await WooCommerce.getAsync("products");
+    const perPage = 18;
+    const result = await WooCommerce.getAsync(`products?per_page=${perPage}`);
     const products = JSON.parse(result.toJSON().body);
     res.json(products);
     // console.log(products);
@@ -43,26 +44,29 @@ app.get("/products", async (req, res) => {
   }
 });
 
-// app.get("/orders", async (req, res) => {
-//     try {
-//       const result = await WooCommerce.getAsync("orders");
-//       const orders = JSON.parse(result.toJSON().body);
-//       res.json(orders);
-//       console.log(orders);
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).send("Internal server error");
-//     }
-//   });
+app.get("/orders", async (req, res) => {
+  try {
+    const result = await WooCommerce.getAsync("orders");
+    const orders = JSON.parse(result.toJSON().body);
+    res.json(orders);
+    console.log(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
 
-// app.get("/posts", async (req, res) => {
-//     try {
-//       const result = await WooCommerce.getAsync("posts");
-//       const posts = JSON.parse(result.toJSON().body);
-//       res.json(posts);
-//       console.log(posts);
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).send("Internal server error");
-//     }
-//   });
+app.get("/posts", async (req, res) => {
+  try {
+    const result = await fetch(
+      "http://localhost/webshop_grupp1/wp-json/wp/v2/posts/?per_page=2"
+    );
+    const json = await result.json();
+    // const posts = JSON.parse(result.toJSON().body);
+    res.json(json);
+    console.log(json);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
