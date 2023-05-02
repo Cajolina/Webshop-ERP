@@ -60,7 +60,22 @@ app.get("/orders", async (req, res) => {
 app.get("/posts", async (req, res) => {
   try {
     const result = await fetch(
-      "http://localhost/webshop_grupp1/wp-json/wp/v2/posts/?per_page=2"
+      "http://localhost/webshop_grupp1/wp-json/wp/v2/posts/?_embed&per_page=2"
+    );
+    const json = await result.json();
+    // const posts = JSON.parse(result.toJSON().body);
+    res.json(json);
+    console.log(json);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
+
+app.get("/media", async (req, res) => {
+  try {
+    const result = await fetch(
+      "http://localhost/webshop_grupp1/wp-json/wp/v2/media?per_page=13"
     );
     const json = await result.json();
     // const posts = JSON.parse(result.toJSON().body);
