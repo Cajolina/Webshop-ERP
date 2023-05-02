@@ -46,7 +46,8 @@ app.get("/products", async (req, res) => {
 
 app.get("/orders", async (req, res) => {
   try {
-    const result = await WooCommerce.getAsync("orders");
+    const perPage = 2;
+    const result = await WooCommerce.getAsync(`orders?per_page=${perPage}`);
     const orders = JSON.parse(result.toJSON().body);
     res.json(orders);
     console.log(orders);
