@@ -37,20 +37,21 @@ function renderProducts(products) {
         const img = document.createElement("img");
         const paragraph = document.createElement("p");
         const h3 = document.createElement("h3");
-        const urlParagraph = document.createElement("p");
+        const urlLink = document.createElement("a");
         const category = document.createElement("p");
 
-        h2.innerText = product.name;
-        h3.innerText = product.price + " kr";
+        h2.innerText = "Produkt: " + product.name;
+        h3.innerText = "Pris: " + product.price + " kr";
         paragraph.innerText = new DOMParser().parseFromString(
           product.short_description,
           "text/html"
         ).body.innerText;
-        urlParagraph.innerText = new DOMParser().parseFromString(
-          product.url,
-          "text/html"
-        ).body.innerText;
+
         category.innerText = "Kategori: " + categories.name;
+
+        urlLink.innerHTML = "Klicka här för att besöka produktens sida";
+        urlLink.setAttribute("href", product.url);
+        urlLink.setAttribute("target", "_blank");
 
         img.setAttribute("src", product.image.src);
         img.setAttribute("alt", product.image.alt);
@@ -59,8 +60,9 @@ function renderProducts(products) {
         div.appendChild(img);
         div.appendChild(h3);
         div.appendChild(paragraph);
-        div.appendChild(urlParagraph);
         div.appendChild(category);
+        div.appendChild(urlLink);
+        urlLink.style.color = "blue";
         if (categories.name === "Tillbehör") {
           tillbehorCount++;
         } else if (categories.name === "Exteriör") {
