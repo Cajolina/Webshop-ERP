@@ -1,23 +1,5 @@
 const main = document.querySelector("main");
 
-// const postData = async () => {
-//   const response = await fetch(
-//     "http://localhost/webshop_grupp1/wp-json/wp/v2/posts/?per_page=2",
-//     {
-//       method: "GET",
-
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }
-//   );
-
-//   const data = await response.json();
-
-//   renderPosts(data);
-// };
-// postData();
-
 async function getProductData() {
   try {
     const response = await fetch("http://localhost:3000/posts");
@@ -50,7 +32,7 @@ function renderPosts(data) {
     ).body.innerText;
 
     console.log(post);
-    // img.setAttribute("src", post._links["wp:featuredmedia"][0].href);
+
     const mediaURL = post._embedded["wp:featuredmedia"][0].source_url;
     img.setAttribute("src", mediaURL);
     img.setAttribute(

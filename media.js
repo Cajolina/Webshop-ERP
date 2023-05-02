@@ -30,5 +30,3 @@ function renderMedia(media) {
     }
   }
 }
-
-//source_url
