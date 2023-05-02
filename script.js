@@ -50,7 +50,9 @@ function renderPosts(data) {
     ).body.innerText;
 
     console.log(post);
-    img.setAttribute("src", post._links["wp:featuredmedia"][0].href);
+    // img.setAttribute("src", post._links["wp:featuredmedia"][0].href);
+    const mediaURL = post._embedded["wp:featuredmedia"][0].source_url;
+    img.setAttribute("src", mediaURL);
     img.setAttribute(
       "style",
       "max-width: 100%; height: auto; display: block; margin-top: 10px;"

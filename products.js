@@ -32,7 +32,9 @@ function renderProducts(products) {
         (categories.name === "Exteriör" && exteriorCount < 5)
       ) {
         console.log(categories);
-        const div = document.createElement("div");
+        const productContainer = document.createElement("section");
+        const divProduct = document.createElement("article");
+        const divText = document.createElement("span");
         const h2 = document.createElement("h2");
         const img = document.createElement("img");
         const paragraph = document.createElement("p");
@@ -56,20 +58,25 @@ function renderProducts(products) {
         img.setAttribute("src", product.image.src);
         img.setAttribute("alt", product.image.alt);
 
-        div.appendChild(h2);
-        div.appendChild(img);
-        div.appendChild(h3);
-        div.appendChild(paragraph);
-        div.appendChild(category);
-        div.appendChild(urlLink);
+        productContainer.appendChild(h2);
+        productContainer.appendChild(divProduct);
+
+        divProduct.appendChild(img);
+        divProduct.appendChild(divText);
+
+        divText.appendChild(h3);
+        divText.appendChild(paragraph);
+        divText.appendChild(category);
+        divText.appendChild(urlLink);
         urlLink.style.color = "blue";
+
         if (categories.name === "Tillbehör") {
           tillbehorCount++;
         } else if (categories.name === "Exteriör") {
           exteriorCount++;
         }
 
-        main.appendChild(div);
+        main.appendChild(productContainer);
       }
     }
   }
