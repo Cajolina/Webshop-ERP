@@ -42,4 +42,3 @@ function renderOrders(orders) {
     main.appendChild(div);
   }
 }
-////id, status, totalsumma,datum

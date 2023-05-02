@@ -19,18 +19,6 @@ const WooCommerce = new WooCommerceAPI({
   version: "wc/v1",
 });
 
-// WooCommerce.getAsync("products/categories").then(function (result) {
-//   return JSON.parse(result.toJSON().body);
-// });
-
-// WooCommerce.getAsync("orders").then(function (result) {
-//   return JSON.parse(result.toJSON().body);
-// });
-
-// WooCommerce.getAsync("posts").then(function (result) {
-//   console.log(JSON.parse(result.toJSON().body));
-// });
-
 app.get("/products", async (req, res) => {
   try {
     const perPage = 18;
